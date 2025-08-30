@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Trading Gratuite</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: white;
+            background-color: #0a0f1c;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(to bottom, #0a0f1c, #0f1830);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.2;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><rect x="0" y="0" width="50" height="50" fill="rgba(255,255,255,0.03)"/><rect x="50" y="50" width="50" height="50" fill="rgba(255,255,255,0.03)"/></svg>');
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            color: #10b981;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            max-width: 800px;
+            color: #d1d5db;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #10b981;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+            animation: bounce 2s infinite;
+        }
+
+        .cta-button:hover {
+            background-color: #059669;
+            transform: scale(1.05);
+        }
+
+        .disclaimer {
+            margin-top: 2rem;
+            color: #9ca3af;
+            font-size: 0.875rem;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .feature-card {
+            background-color: #101828;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            color: #10b981;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-text {
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background-color: #0f1830;
+            text-align: center;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #d1d5db;
+            font-size: 1.125rem;
+        }
+
+        .about-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-icon {
+            color: #10b981;
+            font-size: 2rem;
+        }
+
+        /* Learning Section */
+        .learning {
+            padding: 5rem 0;
+        }
+
+        .learning-list {
+            max-width: 1000px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .learning-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: #101828;
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+            font-size: 1.125rem;
+        }
+
+        .learning-item:hover {
+            background-color: #1a2238;
+        }
+
+        .check-icon {
+            color: #10b981;
+            font-size: 1.5rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5rem 0;
+            background-color: #0f1830;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background-color: #101828;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.05);
+        }
+
+        .testimonial-avatar {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            border: 2px solid #10b981;
+        }
+
+        .testimonial-text {
+            color: #d1d5db;
+            font-style: italic;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 5rem 0;
+            background: linear-gradient(to right, #059669, #10b981);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="none"/><circle cx="100" cy="100" r="80" fill="rgba(0,0,0,0.1)"/></svg>');
+        }
+
+        .final-cta-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+
+        .final-cta-text {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.125rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .final-cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: white;
+            color: #059669;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .final-cta-button:hover {
+            background-color: #f3f4f6;
+            transform: scale(1.1);
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 5rem 0;
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: #101828;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.125rem;
+        }
+
+        .faq-answer {
+            color: #d1d5db;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 3rem 0;
+            background-color: #0a0f1c;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        .footer p:first-child {
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% {
+                transform: translate3d(0, 0, 0);
+            }
+            40%, 43% {
+                transform: translate3d(0, -10px, 0);
+            }
+            70% {
+                transform: translate3d(0, -5px, 0);
+            }
+            90% {
+                transform: translate3d(0, -2px, 0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-icons {
+                gap: 1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-title">🚀 Devenez un Trader Rentable – Formation 100% Gratuite</h1>
+        <p class="hero-subtitle">
+            Rejoignez notre groupe WhatsApp et recevez une formation exclusive + des signaux gratuits pour commencer à trader dès aujourd'hui.
+        </p>
+        <a href="#whatsapp" class="cta-button">
+            <i class="fab fa-whatsapp"></i> Rejoindre le groupe WhatsApp
+        </a>
+        <div class="disclaimer">Sans carte bancaire – accès immédiat</div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Pourquoi rejoindre notre formation ?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <p class="feature-text">📈 Signaux gratuits en temps réel</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-graduation-cap feature-icon"></i>
+                    <p class="feature-text">🎓 Formation simple et efficace</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users feature-icon"></i>
+                    <p class="feature-text">🤝 Communauté active et entraide</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-money-bill-wave feature-icon"></i>
+                    <p class="feature-text">💰 Potentiel de gains rapide</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">À propos de nous</h2>
+            <p class="about-text">
+                Notre équipe de traders professionnels partage son expérience et ses stratégies pour vous aider à réussir. Pas de théorie compliquée : du concret et des résultats.
+            </p>
+            <div class="about-icons">
+                <i class="fas fa-lock about-icon"></i>
+                <i class="fas fa-mobile-alt about-icon"></i>
+                <i class="fas fa-star about-icon"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Section -->
+    <section class="learning">
+        <div class="container">
+            <h2 class="section-title">Ce que vous allez apprendre</h2>
+            <ul class="learning-list">
+                <li class="learning-item">
+                    <i class="fas fa-check-circle check-icon"></i>
+                    Comprendre les bases du trading et de la bourse
+                </li>
+                <li class="learning-item">
+                    <i class="fas fa-check-circle check-icon"></i>
+                    Savoir analyser les graphiques et tendances
+                </li>
+                <li class="learning-item">
+                    <i class="fas fa-check-circle check-icon"></i>
+                    Maîtriser les stratégies de scalping et swing trading
+                </li>
+                <li class="learning-item">
+                    <i class="fas fa-check-circle check-icon"></i>
+                    Utiliser correctement les signaux pour maximiser les gains
+                </li>
+                <li class="learning-item">
+                    <i class="fas fa-check-circle check-icon"></i>
+                    Gestion du risque et discipline mentale
+                </li>
+                <li class="learning-item">
+                    <i class="fas fa-check-circle check-icon"></i>
+                    Découvrir les secrets des traders professionnels
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Ils nous font confiance</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <img src="https://i.pravatar.cc/100?img=20" alt="avatar" class="testimonial-avatar">
+                    <p class="testimonial-text">"Grâce à cette formation, j'ai compris le trading et j'ai réalisé mes premiers profits !"</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://i.pravatar.cc/100?img=21" alt="avatar" class="testimonial-avatar">
+                    <p class="testimonial-text">"Une communauté super motivante, et les signaux sont très fiables."</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://i.pravatar.cc/100?img=22" alt="avatar" class="testimonial-avatar">
+                    <p class="testimonial-text">"Je recommande à tous ceux qui veulent démarrer sérieusement dans le trading."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section id="whatsapp" class="final-cta">
+        <div class="container">
+            <h2 class="final-cta-title">🎯 Ne perdez plus de temps !</h2>
+            <p class="final-cta-text">
+                Rejoignez dès maintenant notre groupe WhatsApp et accédez gratuitement à la formation + signaux en direct.
+            </p>
+            <a href="https://wa.me/" class="final-cta-button">
+                👉 Rejoindre le groupe WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="faq-container">
+                <h2 class="section-title">FAQ</h2>
+                <div class="faq-item">
+                    <h3 class="faq-question">Est-ce vraiment gratuit ?</h3>
+                    <p class="faq-answer">Oui, accès libre sans frais cachés.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Dois-je avoir de l'expérience en trading ?</h3>
+                    <p class="faq-answer">Non, la formation est adaptée aux débutants.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Comment accéder aux signaux ?</h3>
+                    <p class="faq-answer">Directement dans le groupe WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>⚠️ Le trading comporte des risques. Les résultats passés ne garantissent pas les résultats futurs.</p>
+            <p>© 2025 Formation Trading – Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll-triggered animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animations
+        document.querySelectorAll('.feature-card, .learning-item, .testimonial-card, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add click tracking for CTA buttons (optional)
+        document.querySelectorAll('.cta-button, .final-cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // You can add analytics tracking here
+                console.log('CTA clicked:', this.textContent.trim());
+            });
+        });
+    </script>
+</body>
+</html>
